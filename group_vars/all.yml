@@ -1,0 +1,4 @@
+---
+ansible_connection: ssh
+ansible_user: root
+ansible_become_method: sudo

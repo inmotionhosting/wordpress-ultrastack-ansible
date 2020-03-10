@@ -1,0 +1,90 @@
+---
+# site.deploy.yml
+
+- name: check that hosts meet the basic requirements
+  any_errors_fatal: true
+  gather_facts: false
+  hosts: all
+
+  pre_tasks:
+    - name: check if some version of Python is installed and accessible
+      raw: |-
+        command -v python3 || command -v python
+      changed_when: false
+
+    - name: Gather facts for later tasks
+      setup:
+
+  tasks:
+    - name: check if host OS is supported
+      fail:
+        msg: >-
+          {{ ansible_distribution }} {{ ansible_distribution_version }}
+          is not supported.
+      changed_when: false
+      failed_when: >-
+        ansible_distribution not in targets.keys()
+        and (ansible_distribution_version not in target_versions
+        or ansible_distribution_major_version not in target_versions)
+      vars:
+        targets:
+          CentOS: ["7.6", "7.7", "8.0", "8.1"]
+          Debian: ["8", "9", "10"]
+          Ubuntu: ["16.04", "18.04"]
+        target_versions: "{{ targets[ansible_distribution] }}"
+
+    - name: check if this host is managed by Ansible
+      command: >
+        ls /etc/ansible/wordpress-ultrastack
+      changed_when: ansible_deployed.rc > 0
+      failed_when: false
+      register: ansible_deployed
+
+    - name: check if core LAMP services are present
+      command: >
+        command -v {{ item }}
+      changed_when: lamp_installed.rc < 1
+      failed_when: false
+      register: lamp_installed
+      with_items:
+        - apachectl
+        - php
+        - php-fpm
+        - mysql
+      when:
+        - ansible_deployed.changed
+
+    - name: Fail if Ansible isn't managing this host
+      fail:
+        msg: >
+          Core LAMP services are installed, but this host isn't
+          managed by Ansible!  This playbook is intended to be run on
+          hosts that are not already configured.  Please remove the
+          following packages: Apache, PHP, PHP-FPM, MySQL
+      when:
+        - lamp_installed.changed
+        - ansible_deployed.changed
+
+- name: Deploy WordPress to defined hosts in the 'wordpress' group
+  any_errors_fatal: true
+  gather_facts: false
+  hosts: wordpress
+
+  pre_tasks:
+    - name: Create /etc/ansible
+      file:
+        path: /etc/ansible
+        state: directory
+
+    - name: Add file confirming this host is managed by Ansible
+      file:
+        path: /etc/ansible/wordpress-ultrastack
+        state: touch
+        access_time: preserve
+        modification_time: preserve
+
+  roles:
+    - role: inmotion.apache
+    - role: inmotion.mysql
+    - role: inmotion.php-fpm
+    - role: inmotion.wordpress-ultrastack

@@ -1,0 +1,61 @@
+---
+# inventory.yml
+#
+# References:
+# - https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
+# - https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html
+#
+##
+
+# The 'wordpress' group is one we're defining now, which will be used
+# to reference all hosts that we should deploy WordPress to.
+wordpress:
+  # Here we will define the 'hosts' that belong to this group, each of
+  # which may be referenced by domain name or IP address.  Only one
+  # must be defined, though you may add as many as you want.
+  hosts:
+    # This is an example of a host, which is commented so that you must
+    # review this file and update this section.
+
+    # First we must specify a domain or IP address, so that Ansible
+    # knows what host(s) it should run against.
+    domain.tld:
+      # 'system_user' refers to the Linux system user that the
+      # WordPress installation will be owned by and created under this
+      # user's '~/doc_root' directory.
+      system_user: "wordpress"
+
+      # The domain associated with the WordPress installation.  Simply
+      # use the domain name itself without defining a protocol or
+      # adding trailing '/' characters.
+      site_domain: "domain.tld"
+
+      # The email address of the WordPress admin user
+      site_email: "user@domain.tld"
+
+      # The username of the WordPress admin user
+      site_user: "example_username"
+
+      # The password of the WordPress admin user
+      site_pass: "example_password"
+
+      # This variable controls whether the full InMotion UltraStack
+      # should be deployed, which includes the following along with
+      # the core LAMP services:
+      # - nginx
+      # - redis
+      #
+      # Note that if you have deployed with use_ultrastack set to true
+      # and want to set it to false, you _must_ stop and disable the
+      # nginx service to free up ports 80 and 443:
+      #
+      #   systemctl disable --now nginx
+      #
+      use_ultrastack: true
+
+      # Setting this to 'true' will generate a LetsEncrypt SSL for the
+      # target site.  It is safe to enable/disable this feature as
+      # needed, and any SSLs that were generated will not be removed
+      # to prevent exhausting the 5-per-week limit imposed by
+      # LetsEncrypt.
+      use_letsencrypt: true
