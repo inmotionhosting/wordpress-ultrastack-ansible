@@ -13,7 +13,7 @@
 - name: inmotion.wordpress-ultrastack
   src: git+https://github.com/inmotionhosting/inmotion.wordpress-ultrastack
 
-- name: inmotion.redis
+- name: inmotion.nginx-proxy
   src: git+https://github.com/inmotionhosting/inmotion.nginx-proxy
 
 - name: inmotion.redis
