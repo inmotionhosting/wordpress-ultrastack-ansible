@@ -22,7 +22,7 @@ Usage
     ```sh
     # VirtualEnv setup
     $ pip install --user --upgrade virtualenv
-    $ virtualenv .venv
+    $ virtualenv venv
     $ source ./venv/bin/activate
 
     # Install the Python dependencies required by this playbook
