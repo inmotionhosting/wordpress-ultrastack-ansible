@@ -84,7 +84,7 @@
         modification_time: preserve
 
   roles:
-    - role: inmotion.apache
-    - role: inmotion.mysql
-    - role: inmotion.php-fpm
-    - role: inmotion.wordpress-ultrastack
+    - role: inmotionhosting.apache
+    - role: inmotionhosting.mysql
+    - role: inmotionhosting.php-fpm
+    - role: inmotionhosting.wordpress-ultrastack

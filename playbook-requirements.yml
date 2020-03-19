@@ -1,20 +1,9 @@
 ---
 # requirements.yml
 
-- name: inmotion.apache
-  src: git+https://github.com/inmotionhosting/inmotion.apache
-
-- name: inmotion.mysql
-  src: git+https://github.com/inmotionhosting/inmotion.mysql
-
-- name: inmotion.php-fpm
-  src: git+https://github.com/inmotionhosting/inmotion.php-fpm
-
-- name: inmotion.wordpress-ultrastack
-  src: git+https://github.com/inmotionhosting/inmotion.wordpress-ultrastack
-
-- name: inmotion.nginx-proxy
-  src: git+https://github.com/inmotionhosting/inmotion.nginx-proxy
-
-- name: inmotion.redis
-  src: git+https://github.com/inmotionhosting/inmotion.redis
+- name: inmotionhosting.apache
+- name: inmotionhosting.mysql
+- name: inmotionhosting.php-fpm
+- name: inmotionhosting.wordpress-ultrastack
+- name: inmotionhosting.nginx-proxy
+- name: inmotionhosting.redis
