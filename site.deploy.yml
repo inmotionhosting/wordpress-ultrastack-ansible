@@ -86,5 +86,5 @@
   roles:
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
-    - role: inmotionhosting.php-fpm
-    - role: inmotionhosting.wordpress-ultrastack
+    - role: inmotionhosting.php_fpm
+    - role: inmotionhosting.wordpress_ultrastack
