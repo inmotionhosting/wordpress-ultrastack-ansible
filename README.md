@@ -4,58 +4,77 @@ This Ansible playbook deploys WordPress using either an optimized LAMP
 stack or the suite of utilities that drive the heavily-optimized
 InMotion UltraStack.
 
-
 Usage
 =============================
 
-1. First, install the needed Python dependencies:
+## Quick Start
+1. Install Python dependencies:
 
     ```sh
     $ pip install -r python-requirements.txt
     ```
 
-	Consider managing your Python dependencies using
-    [virtualenv](https://virtualenv.pypa.io/).  The following is an
-    example of the steps you _might_ take, based on your preferred way
-    of managing Python dependencies:
+	Optionally consider managing your Python dependencies using
+    [virtualenv]:
 
     ```sh
-    # VirtualEnv setup
-    $ pip install --user --upgrade virtualenv
     $ virtualenv venv
-    $ source ./venv/bin/activate
-
-    # Install the Python dependencies required by this playbook
-    (.venv) $ pip install -r python-requirements.txt
+    $ source venv/bin/activate
+    (venv) $ pip install -r python-requirements.txt
     ```
 
-2. Next, install the dependent Ansible roles:
+2. Install Ansible dependencies:
 
     ```sh
-    $ ansible-galaxy install -r playbook-requirements.yml -p ./roles
+    $ ansible-galaxy install -r playbook-requirements.yml
     ```
 
-3. Copy the [inventory.sample.yml](./inventory.sample.yml) file:
+3. Copy [inventory.sample.yml]:
 
-    You may use any file name you want, though if you do not have a
-    preference a common idiom is to copy it to `inventory.yml`.
+    ```sh
+    $ cp inventory{.sample,}.yml
+    ```
 
-	Clarification on the existing settings as well as how the variables
-	should be modified is provided in-situ.
+    The available settings are documented within this file, and
+    explain how to use the playbook.
 
-4. Finally, run the playbook:
+4. Run the playbook:
 
     ```sh
     $ ansible-playbook -i inventory.yml site.deploy.yml
     ```
 
+## Update
+1. Pull any changes to the playbook:
+
+    ```sh
+    $ git pull origin master
+    ```
+
+2. Update the playbook dependencies:
+
+    ```sh
+    $ ansible-galaxy install -r playbook-requirements.yml
+    ```
+
+4. Run the playbook:
+
+    ```sh
+    $ ansible-playbook -i inventory.yml site.deploy.yml
+    ```
 
 Files
 =============================
 
 | File | Description |
 | ---- | ----------- |
-| [ansible.cfg](./ansible.cfg) | The Ansible configuration defined for this playbook.
-| [inventory.sample.yml](./inventory.sample.yml) | The inventory used by this playbook.
-| [python-requirements.yml](./python-requirements.yml) | The Python dependencies required by this Playbook
-| [playbook-requirements.yml](./playbook-requirements.yml) | The Playbook dependencies required by this Playbook
+| [ansible.cfg] | The Ansible configuration defined for this playbook.
+| [inventory.sample.yml] | The inventory used by this playbook.
+| [python-requirements.yml] | The Python dependencies required by this Playbook
+| [playbook-requirements.yml] | The Playbook dependencies required by this Playbook
+
+[ansible.cfg]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/ansible.cfg
+[inventory.sample.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master//inventory.sample.yml
+[python-requirements.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master//python-requirements.yml
+[playbook-requirements.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/playbook-requirements.yml
+[virtualenv]: https://virtualenv.pypa.io/
