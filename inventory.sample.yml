@@ -1,24 +1,44 @@
 ---
 # inventory.yml
 #
-# References:
+# This file is used by Ansible to define the hosts that the playbook
+# will perform actions on.  Below is the sample inventory provided by
+# this playbook which includes inline comments clarifying each section
+# and the items contained within it.
+#
+# For additional information, please see the following:
 # - https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html
 # - https://docs.ansible.com/ansible/latest/network/getting_started/first_inventory.html
 #
 ##
 
-# The 'wordpress' group is one we're defining now, which will be used
-# to reference all hosts that we should deploy WordPress to.
+# The 'wordpress' group contains the variables and hosts that will be
+# used by the playbook to deploy WordPress.
 wordpress:
-  # Here we will define the 'hosts' that belong to this group, each of
-  # which may be referenced by domain name or IP address.  Only one
-  # must be defined, though you may add as many as you want.
-  hosts:
-    # This is an example of a host, which is commented so that you must
-    # review this file and update this section.
+  # Within the 'wordpress' group we may define 'vars' that act as
+  # settings that apply to all 'hosts' defined in this group.
+  vars:
+    # When enabled, 'use_ultrastack' signals to also include Nginx and
+    # Redis as part of the deployment.
+    use_ultrastack: true
 
-    # First we must specify a domain or IP address, so that Ansible
-    # knows what host(s) it should run against.
+    # When enabled, 'use_letsencrypt' signals to generate a LetsEncypt
+    # SSL as part of the deployment.  This is disabled by default to
+    # prevent a host from being ratelimited by the LetsEncrypt API
+    # though additional conditions have been added to ensure that a
+    # host meets the needed conditions to generate an SSL.
+    #
+    # You may freely enable/disable this variable to control whether a
+    # target site should use HTTP or HTTPS after running this playbook.
+    use_letsencrypt: false
+
+  # Within the 'wordpress' group we may define 'hosts' that indicate
+  # the deployment targets for this playbook.
+  hosts:
+    # Within 'hosts' we may define an individual host, referenced in
+    # this example as 'domain.tld'.  This may be either a domain name
+    # or IP address, based on your preference, provided it is able to
+    # be reached.
     domain.tld:
       # 'system_user' refers to the Linux system user that the
       # WordPress installation will be owned by and created under this
@@ -27,35 +47,14 @@ wordpress:
 
       # The domain associated with the WordPress installation.  Simply
       # use the domain name itself without defining a protocol or
-      # adding trailing '/' characters.
+      # trailing '/' characters.
       site_domain: "domain.tld"
 
-      # The email address of the WordPress admin user
+      # The email address of the WordPress administrator.
       site_email: "user@domain.tld"
 
-      # The username of the WordPress admin user
-      site_user: "example_username"
+      # The username of the WordPress administrator.
+      site_user: "example_username" # INSECURE!!  CHANGEME!!
 
-      # The password of the WordPress admin user
-      site_pass: "example_password"
-
-      # This variable controls whether the full InMotion UltraStack
-      # should be deployed, which includes the following along with
-      # the core LAMP services:
-      # - nginx
-      # - redis
-      #
-      # Note that if you have deployed with use_ultrastack set to true
-      # and want to set it to false, you _must_ stop and disable the
-      # nginx service to free up ports 80 and 443:
-      #
-      #   systemctl disable --now nginx
-      #
-      use_ultrastack: true
-
-      # Setting this to 'true' will generate a LetsEncrypt SSL for the
-      # target site.  It is safe to enable/disable this feature as
-      # needed, and any SSLs that were generated will not be removed
-      # to prevent exhausting the 5-per-week limit imposed by
-      # LetsEncrypt.
-      use_letsencrypt: true
+      # The password of the WordPress administrator.
+      site_pass: "example_password" # INSECURE!!  CHANGEME!!
