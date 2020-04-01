@@ -2,7 +2,7 @@
 # inventory.yml
 #
 # This file is used by Ansible to define the hosts that the playbook
-# will perform actions on.  Below is the sample inventory provided by
+# will perform actions on. Below is the sample inventory provided by
 # this playbook which includes inline comments clarifying each section
 # and the items contained within it.
 #
@@ -22,9 +22,9 @@ wordpress:
     # Redis as part of the deployment.
     use_ultrastack: true
 
-    # When enabled, 'use_letsencrypt' signals to generate a LetsEncypt
-    # SSL as part of the deployment.  This is disabled by default to
-    # prevent a host from being ratelimited by the LetsEncrypt API
+    # When enabled, 'use_letsencrypt' signals to generate a Let's Encrypt
+    # SSL certificate as part of the deployment. This is disabled by default
+    # to prevent a host from being ratelimited by the Let's Encrypt API,
     # though additional conditions have been added to ensure that a
     # host meets the needed conditions to generate an SSL.
     #
@@ -33,10 +33,10 @@ wordpress:
     use_letsencrypt: false
 
   # Within the 'wordpress' group we may define 'hosts' that indicate
-  # the deployment targets for this playbook.
+  # the individual deployment targets for this playbook.
   hosts:
     # Within 'hosts' we may define an individual host, referenced in
-    # this example as 'domain.tld'.  This may be either a domain name
+    # this example as 'domain.tld'. This may be either a domain name
     # or IP address, based on your preference, provided it is able to
     # be reached.
     domain.tld:
@@ -45,7 +45,7 @@ wordpress:
       # user's '~/doc_root' directory.
       system_user: "wordpress"
 
-      # The domain associated with the WordPress installation.  Simply
+      # The domain associated with the WordPress installation. Simply
       # use the domain name itself without defining a protocol or
       # trailing '/' characters.
       site_domain: "domain.tld"
@@ -54,7 +54,7 @@ wordpress:
       site_email: "user@domain.tld"
 
       # The username of the WordPress administrator.
-      site_user: "example_username" # INSECURE!!  CHANGEME!!
+      site_user: "example_username" # INSECURE!! CHANGEME!!
 
       # The password of the WordPress administrator.
-      site_pass: "example_password" # INSECURE!!  CHANGEME!!
+      site_pass: "example_password" # INSECURE!! CHANGEME!!
