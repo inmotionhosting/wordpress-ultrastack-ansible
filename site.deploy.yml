@@ -108,4 +108,5 @@
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
     - role: inmotionhosting.php_fpm
+    - role: inmotionhosting.letsencrypt
     - role: inmotionhosting.wordpress_ultrastack
