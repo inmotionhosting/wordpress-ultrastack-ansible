@@ -27,7 +27,7 @@
     # Check for the following supported OSs on the host:
     # CentOS: 7.6, 7.7, 7.8, 8.0, 8.1
     # Debian: Stretch (9), Buster (10)
-    # Ubuntu: Xenial Xerus (16.04), Bionic Beaver (18.04)
+    # Ubuntu: Xenial Xerus (16.04), Bionic Beaver (18.04), Focal Fossa (20.04)
     - name: check if host OS is supported
       fail:
         msg: >-
@@ -42,7 +42,7 @@
         targets:
           CentOS: ["7.6", "7.7", "7.8", "8.0", "8.1"]
           Debian: ["stretch", "buster"]
-          Ubuntu: ["xenial", "bionic"]
+          Ubuntu: ["xenial", "bionic", "focal"]
         target_versions: "{{ targets[ansible_distribution] }}"
 
     - name: check if this host is managed by Ansible
