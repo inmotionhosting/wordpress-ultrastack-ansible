@@ -2,13 +2,13 @@
 # playbook-requirements.yml
 
 - name: inmotionhosting.apache
-  version: "1.0.1"
+  version: "1.0.2"
 
 - name: inmotionhosting.mysql
   version: "1.0.1"
 
 - name: inmotionhosting.nginx_proxy
-  version: "1.0.1"
+  version: "1.0.2"
 
 - name: inmotionhosting.php_fpm
   version: "1.0.1"
@@ -20,4 +20,4 @@
   version: "1.0.0"
 
 - name: inmotionhosting.wordpress_ultrastack
-  version: "1.0.1"
+  version: "1.0.3"
