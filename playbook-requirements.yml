@@ -5,7 +5,7 @@
   version: "1.0.2"
 
 - name: inmotionhosting.mysql
-  version: "1.0.1"
+  version: "1.0.2"
 
 - name: inmotionhosting.nginx_proxy
   version: "1.0.2"
