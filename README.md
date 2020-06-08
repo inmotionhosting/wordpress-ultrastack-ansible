@@ -79,7 +79,7 @@ deployment, you may use the following steps:
 3. Update the Playbook dependencies:
 
     ```sh
-    $ ansible-galaxy install -r playbook-requirements.yml
+    $ ansible-galaxy install -r playbook-requirements.yml --force
     ```
 
 4. Run the Playbook:
