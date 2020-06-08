@@ -40,6 +40,7 @@ wordpress:
     # or IP address, based on your preference, provided it is able to
     # be reached.
     domain.tld:
+
       # 'system_user' refers to the Linux system user that the
       # WordPress installation will be owned by and created under this
       # user's '~/doc_root' directory.
