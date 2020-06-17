@@ -103,10 +103,11 @@
         access_time: preserve
         modification_time: preserve
 
-  # Install the LAMP services and WordPress UltraStack packages.
+  # Install the LAMP services, WordPress, and WordPress UltraStack packages.
   roles:
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
     - role: inmotionhosting.php_fpm
     - role: inmotionhosting.letsencrypt
+    - role: inmotionhosting.wordpress
     - role: inmotionhosting.wordpress_ultrastack
