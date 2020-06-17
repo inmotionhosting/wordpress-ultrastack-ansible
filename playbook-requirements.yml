@@ -19,5 +19,8 @@
 - name: inmotionhosting.letsencrypt
   version: "1.0.1"
 
+- name: inmotionhosting.wordpress
+  version: "1.0.0"
+
 - name: inmotionhosting.wordpress_ultrastack
-  version: "1.0.4"
+  version: "1.0.5"
