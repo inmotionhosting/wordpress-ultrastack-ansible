@@ -1,4 +1,4 @@
-# wordpress-ultrastack-ansible
+# Ansible Playbook: WordPress UltraStack
 
 This Ansible playbook deploys WordPress using either an optimized LAMP
 stack or the suite of utilities that drive the heavily-optimized
