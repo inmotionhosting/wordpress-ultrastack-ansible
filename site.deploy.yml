@@ -40,7 +40,7 @@
         and ansible_distribution_version not in target_versions)
       vars:
         targets:
-          CentOS: ["7.6", "7.7", "7.8", "8.0", "8.1", 8.2"]
+          CentOS: ["7.6", "7.7", "7.8", "8.0", "8.1", "8.2"]
           Debian: ["stretch", "buster"]
           Ubuntu: ["xenial", "bionic", "focal"]
         target_versions: "{{ targets[ansible_distribution] }}"
