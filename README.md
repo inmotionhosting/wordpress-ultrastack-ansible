@@ -27,6 +27,9 @@ Usage
 
     ```sh
     $ ansible-galaxy install -r playbook-requirements.yml
+    #If you're running Ansible 2.9, you will need to run the following instead:
+    $ ansible-galaxy role install -r playbook-requirements.yml
+    $ ansible-galaxy collection install -r playbook-requirements.yml
     ```
 
 3. Copy [inventory.sample.yml]:
@@ -80,6 +83,8 @@ deployment, you may use the following steps:
 
     ```sh
     $ ansible-galaxy install -r playbook-requirements.yml --force
+    #If you're running Ansible 2.9, you will need to run the following instead:
+    $ ansible-galaxy role install -r playbook-requirements.yml --force
     ```
 
 4. Run the Playbook:
