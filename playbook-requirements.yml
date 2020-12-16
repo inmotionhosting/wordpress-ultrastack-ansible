@@ -1,26 +1,31 @@
 ---
 # playbook-requirements.yml
 
-- name: inmotionhosting.apache
-  version: "1.0.2"
+roles:
+  - name: inmotionhosting.apache
+    version: "1.1.0"
 
-- name: inmotionhosting.mysql
-  version: "1.0.2"
+  - name: inmotionhosting.mysql
+    version: "1.1.0"
 
-- name: inmotionhosting.nginx_proxy
-  version: "1.0.3"
+  - name: inmotionhosting.nginx_proxy
+    version: "1.1.0"
 
-- name: inmotionhosting.php_fpm
-  version: "1.0.1"
+  - name: inmotionhosting.php_fpm
+    version: "1.1.0"
 
-- name: inmotionhosting.redis
-  version: "1.0.1"
+  - name: inmotionhosting.redis
+    version: "1.1.0"
 
-- name: inmotionhosting.letsencrypt
-  version: "1.0.1"
+  - name: inmotionhosting.letsencrypt
+    version: "1.0.2"
 
-- name: inmotionhosting.wordpress
-  version: "1.0.0"
+  - name: inmotionhosting.wordpress
+    version: "1.1.0"
 
-- name: inmotionhosting.wordpress_ultrastack
-  version: "1.0.5"
+  - name: inmotionhosting.wordpress_ultrastack
+    version: "1.1.0"
+
+collections:
+  - community.general
+  - ansible.posix

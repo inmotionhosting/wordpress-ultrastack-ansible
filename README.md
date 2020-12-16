@@ -26,7 +26,8 @@ Usage
 2. Install Ansible dependencies:
 
     ```sh
-    $ ansible-galaxy install -r playbook-requirements.yml
+    $ ansible-galaxy role install -r playbook-requirements.yml
+    $ ansible-galaxy collection install -r playbook-requirements.yml
     ```
 
 3. Copy [inventory.sample.yml]:

@@ -25,7 +25,7 @@
   # is managing the host.
   tasks:
     # Check for the following supported OSs on the host:
-    # CentOS: 7.6, 7.7, 7.8, 8.0, 8.1, 8.2
+    # CentOS: 7.6, 7.7, 7.8, 7.9, 8.0, 8.1, 8.2, 8.3
     # Debian: Stretch (9), Buster (10)
     # Ubuntu: Xenial Xerus (16.04), Bionic Beaver (18.04), Focal Fossa (20.04)
     - name: check if host OS is supported
@@ -40,7 +40,7 @@
         and ansible_distribution_version not in target_versions)
       vars:
         targets:
-          CentOS: ["7.6", "7.7", "7.8", "7.9", "8.0", "8.1", "8.2"]
+          CentOS: ["7.6", "7.7", "7.8", "7.9", "8.0", "8.1", "8.2", "8.3"]
           Debian: ["stretch", "buster"]
           Ubuntu: ["xenial", "bionic", "focal"]
         target_versions: "{{ targets[ansible_distribution] }}"
