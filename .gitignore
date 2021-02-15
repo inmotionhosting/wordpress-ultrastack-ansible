@@ -2,7 +2,7 @@
 *
 
 # Include these things
-!*-requirements.*
+!requirements.*
 !*.sample.yml
 !.gitignore
 !LICENSE

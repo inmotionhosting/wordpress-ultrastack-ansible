@@ -5,7 +5,7 @@ collections:
 
 roles:
   - name: inmotionhosting.apache
-    version: "1.1.0"
+    version: "1.2.0"
 
   - name: inmotionhosting.mysql
     version: "1.2.0"
@@ -23,7 +23,7 @@ roles:
     version: "1.0.2"
 
   - name: inmotionhosting.wordpress
-    version: "1.1.0"
+    version: "1.2.0"
 
   - name: inmotionhosting.wordpress_ultrastack
     version: "1.1.0"

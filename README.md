@@ -2,12 +2,12 @@
 This Ansible playbook deploys WordPress using either an optimized LAMP stack or
 the suite of utilities that drive the heavily-optimized InMotion UltraStack.
 
-| File                        | Description |
-| --------------------------- | ----------- |
-| [ansible.cfg]               | The Ansible configuration defined for this playbook.
-| [inventory.sample.yml]      | The sample inventory provided by this playbook.
-| [python-requirements.txt]   | The Python dependencies required by this Playbook
-| [playbook-requirements.yml] | The Playbook dependencies required by this Playbook
+| File                   | Description |
+| ---------------------- | ----------- |
+| [ansible.cfg]          | Ansible configuration file.
+| [inventory.sample.yml] | Sample Ansible inventory.
+| [requirements.txt]     | Required Python dependencies.
+| [requirements.yml]     | Required Ansible dependencies.
 
 
 Usage
@@ -20,13 +20,13 @@ Quick Start
     ```sh
     $ virtualenv venv
     $ source venv/bin/activate
-    (venv) $ pip install -r python-requirements.txt
+    (venv) $ pip install -r requirements.txt
     ```
 
 2. Install Ansible dependencies:
 
     ```sh
-    $ ansible-galaxy install -r playbook-requirements.yml
+    $ ansible-galaxy install -r requirements.yml
     ```
 
 3. Copy [inventory.sample.yml]:
@@ -74,13 +74,13 @@ may use the following steps:
 2. Update the Python dependencies:
 
     ```sh
-    $ pip install -Ur python-requirements.txt
+    $ pip install -Ur requirements.txt
     ```
 
 3. Update the Playbook dependencies:
 
     ```sh
-    $ ansible-galaxy install -r playbook-requirements.yml --force
+    $ ansible-galaxy install -r requirements.yml --force
     ```
 
 4. Run the Playbook:
@@ -91,6 +91,6 @@ may use the following steps:
 
 [ansible.cfg]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/ansible.cfg
 [inventory.sample.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/inventory.sample.yml
-[python-requirements.txt]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/python-requirements.txt
-[playbook-requirements.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/playbook-requirements.yml
+[requirements.txt]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/python-requirements.txt
+[requirements.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/playbook-requirements.yml
 [virtualenv]: https://virtualenv.pypa.io/
