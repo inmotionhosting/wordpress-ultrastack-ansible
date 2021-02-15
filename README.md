@@ -1,21 +1,21 @@
 # Ansible Playbook: WordPress UltraStack
+This Ansible playbook deploys WordPress using either an optimized LAMP stack or
+the suite of utilities that drive the heavily-optimized InMotion UltraStack.
 
-This Ansible playbook deploys WordPress using either an optimized LAMP
-stack or the suite of utilities that drive the heavily-optimized
-InMotion UltraStack.
+| File                        | Description |
+| --------------------------- | ----------- |
+| [ansible.cfg]               | The Ansible configuration defined for this playbook.
+| [inventory.sample.yml]      | The sample inventory provided by this playbook.
+| [python-requirements.txt]   | The Python dependencies required by this Playbook
+| [playbook-requirements.yml] | The Playbook dependencies required by this Playbook
+
 
 Usage
-=============================
+==========
 
-## Quick Start
-1. Install Python dependencies:
-
-    ```sh
-    $ pip install -r python-requirements.txt
-    ```
-
-    Optionally consider managing your Python dependencies using
-    [virtualenv]:
+Quick Start
+----------
+1. Install Python dependencies using [virtualenv]:
 
     ```sh
     $ virtualenv venv
@@ -27,9 +27,6 @@ Usage
 
     ```sh
     $ ansible-galaxy install -r playbook-requirements.yml
-    #If you're running Ansible 2.9, you will need to run the following instead:
-    $ ansible-galaxy role install -r playbook-requirements.yml
-    $ ansible-galaxy collection install -r playbook-requirements.yml
     ```
 
 3. Copy [inventory.sample.yml]:
@@ -45,9 +42,9 @@ Usage
     $ vi inventory.yml
     ```
 
-    In the `inventory.yml` file created in the last step, you will
-    need to edit the placeholder values.  At minimum, you will need to
-    change the reference to `domain.tld:` under `hosts`:
+    In the `inventory.yml` file created in the last step, you will need to
+    edit the placeholder values.  At minimum, you will need to change the
+    reference to `domain.tld:` under `hosts`:
 
     ```sh
     $ diff inventory.sample.yml inventory.yml
@@ -60,12 +57,13 @@ Usage
 5. Run the playbook:
 
     ```sh
-    $ ansible-playbook -i inventory.yml site.deploy.yml
+    $ ansible-playbook -i inventory.yml site.yml
     ```
 
-## Update
-To grab the latest copy of the Playbook and update an existing
-deployment, you may use the following steps:
+Update
+----------
+To grab the latest copy of the Playbook and update an existing deployment, you
+may use the following steps:
 
 1. Pull any changes to the playbook:
 
@@ -83,25 +81,13 @@ deployment, you may use the following steps:
 
     ```sh
     $ ansible-galaxy install -r playbook-requirements.yml --force
-    #If you're running Ansible 2.9, you will need to run the following instead:
-    $ ansible-galaxy role install -r playbook-requirements.yml --force
     ```
 
 4. Run the Playbook:
 
     ```sh
-    $ ansible-playbook -i inventory.yml site.deploy.yml
+    $ ansible-playbook -i inventory.yml site.yml
     ```
-
-Files
-=============================
-
-| File | Description |
-| ---- | ----------- |
-| [ansible.cfg] | The Ansible configuration defined for this playbook.
-| [inventory.sample.yml] | The sample inventory provided by this playbook.
-| [python-requirements.txt] | The Python dependencies required by this Playbook
-| [playbook-requirements.yml] | The Playbook dependencies required by this Playbook
 
 [ansible.cfg]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/ansible.cfg
 [inventory.sample.yml]: https://github.com/inmotionhosting/wordpress-ultrastack-ansible/blob/master/inventory.sample.yml
