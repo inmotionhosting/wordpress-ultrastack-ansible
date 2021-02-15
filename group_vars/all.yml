@@ -2,3 +2,7 @@
 ansible_connection: ssh
 ansible_user: root
 ansible_become_method: sudo
+
+# (Optional) Set software versions
+#mysql_version: "10.5"
+#php_version: "7.4"
