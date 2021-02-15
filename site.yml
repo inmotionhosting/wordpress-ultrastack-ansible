@@ -1,33 +1,18 @@
 ---
-# site.deploy.yml
-
-# To deploy the LAMP and UltraStack playbooks, we want to first ensure the
-# host meets basic requirements. We don't need to gather facts (gather_facts)
-# about this point. If any of the pretasks or tasks return an error, we will
-# abort the deployment (any_errors_fatal).
 - name: check that hosts meet the basic requirements
-  any_errors_fatal: true
   gather_facts: false
   hosts: all
 
-  # Pretask: Confirm Python exists on the host. If Python exists, we'll collect
-  # facts about the host (setup) for use in subsequent tasks.
   pre_tasks:
     - name: check if some version of Python is installed and accessible
-      raw: |-
+      raw: >-
         command -v python3 || command -v python
       changed_when: false
 
     - name: Gather facts for later tasks
       setup:
 
-  # Tasks to check for the OS, LAMP services, and if Ansible
-  # is managing the host.
   tasks:
-    # Check for the following supported OSs on the host:
-    # CentOS: 7.6, 7.7, 7.8, 7.9, 8.0, 8.1, 8.2, 8.3
-    # Debian: Stretch (9), Buster (10)
-    # Ubuntu: Xenial Xerus (16.04), Bionic Beaver (18.04), Focal Fossa (20.04)
     - name: check if host OS is supported
       fail:
         msg: >-
@@ -37,57 +22,47 @@
       failed_when: >-
         ansible_distribution not in targets.keys()
         or (ansible_distribution_release not in target_versions
-        and ansible_distribution_version not in target_versions)
+        and ansible_distribution_version not in target_versions
+        and ansible_distribution_major_version not in target_versions)
       vars:
         targets:
-          CentOS: ["7.6", "7.7", "7.8", "7.9", "8.0", "8.1", "8.2", "8.3"]
+          CentOS: ["7.6", "7.7", "7.8", "7.9", "8"]
           Debian: ["stretch", "buster"]
-          Ubuntu: ["xenial", "bionic", "focal"]
+          Ubuntu: ["bionic", "focal"]
         target_versions: "{{ targets[ansible_distribution] }}"
 
     - name: check if this host is managed by Ansible
-      command: >
+      command: >-
         ls /etc/ansible/wordpress-ultrastack
       changed_when: ansible_deployed.rc > 0
       failed_when: false
       register: ansible_deployed
 
-    # If ansible_deployed.changed is True, check for core LAMP services
-    # by checking their respective commands.
-    # If LAMP services already exist, lamp_installed.changed is True.
     - name: check if core LAMP services are present
-      command: >
+      command: >-
         command -v {{ item }}
       changed_when: lamp_installed.rc < 1
       failed_when: false
       register: lamp_installed
+      when: ansible_deployed.changed
       with_items:
         - apachectl
+        - mysql
         - php
         - php-fpm
-        - mysql
-      when:
-        - ansible_deployed.changed
 
-    # If lamp_installed.changed and ansible_deployed.changed are both True,
-    # LAMP services are installed but the host isn't managed by Ansible.
-    # Abort the run and advise the removal of the LAMP services.
-    - name: Fail if Ansible isn't managing this host
+    - name: fail if Ansible isn't managing this host
       fail:
-        msg: >
+        msg: >-
           Core LAMP services are installed, but this host isn't
           managed by Ansible!  This playbook is intended to be run on
           hosts that are not already configured.  Please remove the
           following packages: Apache, PHP, PHP-FPM, MySQL
       when:
-        - lamp_installed.changed
         - ansible_deployed.changed
+        - lamp_installed.changed
 
-# If we haven't failed by this point, we're ready to prep for
-# service and WordPress deployment.
 - name: Deploy WordPress to defined hosts in the 'wordpress' group
-  any_errors_fatal: true
-  gather_facts: false
   hosts: wordpress
 
   pre_tasks:
@@ -99,15 +74,16 @@
     - name: Add file confirming this host is managed by Ansible
       file:
         path: /etc/ansible/wordpress-ultrastack
-        state: touch
         access_time: preserve
         modification_time: preserve
+        state: touch
 
-  # Install the LAMP services, WordPress, and WordPress UltraStack packages.
   roles:
     - role: inmotionhosting.apache
     - role: inmotionhosting.mysql
     - role: inmotionhosting.php_fpm
     - role: inmotionhosting.letsencrypt
+      when: use_letsencrypt is defined and use_letsencrypt
     - role: inmotionhosting.wordpress
     - role: inmotionhosting.wordpress_ultrastack
+      when: use_ultrastack is defined and use_ultrastack
