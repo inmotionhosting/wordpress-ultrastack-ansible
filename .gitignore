@@ -2,11 +2,11 @@
 *
 
 # Include these things
-!.gitignore
-!ansible.cfg
-!LICENSE
-!README.md
-!site*.yml
 !*-requirements.*
 !*.sample.yml
-!group_vars/*.yml
+!.gitignore
+!LICENSE
+!README.md
+!ansible.cfg
+!group_vars/all.yml
+!site*.yml
