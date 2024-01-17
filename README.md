@@ -1,3 +1,5 @@
+![InMotion Hosting Ultrastack](https://www.inmotionhosting.com/wp-content/uploads/2024/01/ultrastack-logo-black-vertical.png)
+
 # Ansible Playbook: WordPress UltraStack
 This Ansible playbook deploys WordPress using either an optimized LAMP stack or
 the suite of utilities that drive the heavily-optimized InMotion UltraStack.
